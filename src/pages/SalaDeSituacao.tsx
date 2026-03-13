@@ -370,24 +370,39 @@ const SalaDeSituacao: React.FC = () => {
               </CardContent>
             </Card>
 
-            {/* Progresso das ações de pré-natal */}
-            <Card className="cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg" onClick={() => navigate('/financiamento-aps/qualidade-esf-eap?tab=qualidade')}  >
-              <CardContent className="py-5">
-                <p className="text-sm font-medium text-muted-foreground mb-4">Progresso das ações de pré-natal</p>
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                  <GaugeChart label="Consultas" done={qualidade.consultas.feitas} total={qualidade.consultas.total} />
-                  <GaugeChart label="Procedimentos" done={qualidade.procedimentos.feitas} total={qualidade.procedimentos.total} />
-                  <GaugeChart label="Vacinas" done={qualidade.vacinas.feitas} total={qualidade.vacinas.total} />
-                  <GaugeChart label="Visitas" done={qualidade.visitas.feitas} total={qualidade.visitas.total} />
+            {/* Qualidade do pré-natal + Progresso das ações */}
+            <Card className="overflow-hidden cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg" onClick={() => navigate('/financiamento-aps/qualidade-esf-eap?tab=qualidade')}>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-muted-foreground">Qualidade do pré-natal</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-5 pb-0">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <ClassificationCard classification="otimo" count={qualidade.otimo} countLabel="gestantes" icon={true} />
+                  <ClassificationCard classification="bom" count={qualidade.bom} countLabel="gestantes" icon={true} />
+                  <ClassificationCard classification="suficiente" count={qualidade.suficiente} countLabel="gestantes" icon={true} />
+                  <ClassificationCard classification="regular" count={qualidade.regular} countLabel="gestantes" icon={true} />
+                </div>
+
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground mb-3">Progresso das ações de pré-natal</p>
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                    <GaugeChart label="Consultas" done={qualidade.consultas.feitas} total={qualidade.consultas.total} />
+                    <GaugeChart label="Procedimentos" done={qualidade.procedimentos.feitas} total={qualidade.procedimentos.total} />
+                    <GaugeChart label="Vacinas" done={qualidade.vacinas.feitas} total={qualidade.vacinas.total} />
+                    <GaugeChart label="Visitas" done={qualidade.visitas.feitas} total={qualidade.visitas.total} />
+                  </div>
                 </div>
               </CardContent>
-              <div className="px-5 py-3 bg-muted/40 border-t border-border flex items-center gap-2">
+              <div
+                className="mt-4 px-5 py-3 bg-muted/40 border-t border-border flex items-center gap-2"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <Info className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
                 <p className="text-xs text-muted-foreground">
                   Dados calculados com base nos indicadores de qualidade do módulo de{' '}
                   <span
                     className="text-primary cursor-pointer hover:underline"
-                    onClick={(e) => { e.stopPropagation(); navigate('/financiamento-aps/qualidade-esf-eap'); }}
+                    onClick={() => navigate('/financiamento-aps/qualidade-esf-eap')}
                   >
                     Financiamento APS
                   </span>.
