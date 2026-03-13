@@ -179,7 +179,10 @@ const SalaDeSituacao: React.FC = () => {
                   </div>
 
                   {/* Stats bar — ultra compacto */}
-                  <div className="bg-card rounded-lg border border-border overflow-hidden">
+                  <div
+                    className="bg-card rounded-lg border border-border overflow-hidden cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+                    onClick={() => navigate('/financiamento-aps')}
+                  >
                     <div className="grid grid-cols-3 divide-x divide-border">
                       {[
                         { label: 'Cadastro atualizado', value: 8241, pct: 58, total: 14210 },
@@ -187,7 +190,6 @@ const SalaDeSituacao: React.FC = () => {
                         { label: 'Acompanhadas', value: 4038, pct: 49, total: 8241 },
                       ].map((item) => (
                         <div key={item.label} className="px-3 py-2">
-                          {/* Label curto + total na mesma linha */}
                           <div className="flex items-center justify-between gap-2">
                             <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">
                               {item.label}
@@ -196,8 +198,6 @@ const SalaDeSituacao: React.FC = () => {
                               de {item.total.toLocaleString('pt-BR')}
                             </span>
                           </div>
-
-                          {/* Valor + barra na mesma linha horizontal */}
                           <div className="flex items-center gap-2 mt-1">
                             <span className="text-[18px] font-bold text-foreground tabular-nums">
                               {item.value.toLocaleString('pt-BR')}
