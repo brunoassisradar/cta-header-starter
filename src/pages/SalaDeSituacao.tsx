@@ -188,7 +188,7 @@ const SalaDeSituacao: React.FC = () => {
                           <div className="flex items-center gap-3">
                             <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                               <div
-                                className="h-full rounded-full bg-slate-500/60 transition-all"
+                                className="h-full rounded-full bg-muted-foreground/50 transition-all"
                                 style={{ width: `${item.pct}%` }}
                               />
                             </div>
