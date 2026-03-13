@@ -61,6 +61,8 @@ const App = () => (
                 <Route path="/linhas-de-cuidado/gestantes" element={<GestantesVisaoGeral />} />
                 <Route path="/linhas-de-cuidado/gestantes/relatorio" element={<GestantesRelatorio />} />
                 <Route path="/linhas-de-cuidado/gestantes/individualizado" element={<GestantesIndividualizado />} />
+                <Route path="/linhas-de-cuidado/hipertensos" element={<EmConstrucao />} />
+                <Route path="/linhas-de-cuidado/diabeticos" element={<EmConstrucao />} />
                 <Route path="/financeiro" element={<Financeiro />} />
                 <Route path="/financeiro/visao-geral" element={<FinanceiroVisaoGeral />} />
                 <Route path="/financeiro/relatorio" element={<FinanceiroRelatorio />} />

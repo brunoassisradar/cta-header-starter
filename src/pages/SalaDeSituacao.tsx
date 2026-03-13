@@ -288,7 +288,7 @@ const SalaDeSituacao: React.FC = () => {
         <SectionHeader
           title="Perfil APS"
           icon={<Users className="w-4 h-4 text-primary" />}
-          linkTo="/linhas-de-cuidado/gestantes/visao-geral"
+          linkTo="/linhas-de-cuidado"
           linkLabel="Linha de cuidado"
         />
 
