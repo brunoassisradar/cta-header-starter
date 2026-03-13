@@ -199,6 +199,7 @@ const SalaDeSituacao: React.FC = () => {
                   <div className="py-2 bg-[hsl(var(--status-suficiente-bg))] text-[hsl(var(--status-suficiente))] font-bold text-lg">{financeiro.vinculo.suficiente}</div>
                   <div className="py-2 bg-[hsl(var(--status-regular-bg))] text-[hsl(var(--status-regular))] font-bold text-lg">{financeiro.vinculo.regular}</div>
                 </div>
+                </div>
               )}
 
               {financeiroSubTab === 'Qualidade eSF/eAP' && (
