@@ -15,6 +15,7 @@ import LinhasDeCuidado from "./pages/LinhasDeCuidado";
 import GestantesVisaoGeral from "./pages/linhas-de-cuidado/GestantesVisaoGeral";
 import GestantesRelatorio from "./pages/linhas-de-cuidado/GestantesRelatorio";
 import GestantesIndividualizado from "./pages/linhas-de-cuidado/GestantesIndividualizado";
+import EmConstrucao from "./pages/linhas-de-cuidado/EmConstrucao";
 import QualidadeVisaoGeral from "./pages/QualidadeVisaoGeral";
 import QualidadeRelatorio from "./pages/QualidadeRelatorio";
 import QualidadeIndividualizado from "./pages/QualidadeIndividualizado";
@@ -60,6 +61,8 @@ const App = () => (
                 <Route path="/linhas-de-cuidado/gestantes" element={<GestantesVisaoGeral />} />
                 <Route path="/linhas-de-cuidado/gestantes/relatorio" element={<GestantesRelatorio />} />
                 <Route path="/linhas-de-cuidado/gestantes/individualizado" element={<GestantesIndividualizado />} />
+                <Route path="/linhas-de-cuidado/hipertensos" element={<EmConstrucao />} />
+                <Route path="/linhas-de-cuidado/diabeticos" element={<EmConstrucao />} />
                 <Route path="/financeiro" element={<Financeiro />} />
                 <Route path="/financeiro/visao-geral" element={<FinanceiroVisaoGeral />} />
                 <Route path="/financeiro/relatorio" element={<FinanceiroRelatorio />} />

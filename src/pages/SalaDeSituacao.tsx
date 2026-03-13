@@ -125,7 +125,7 @@ const SalaDeSituacao: React.FC = () => {
         <SectionHeader
           title="Financeiro APS"
           icon={<DollarSign className="w-4 h-4 text-primary" />}
-          linkTo="/financeiro/visao-geral"
+          linkTo="/financeiro"
           linkLabel="Financeiro"
         />
 
@@ -161,7 +161,10 @@ const SalaDeSituacao: React.FC = () => {
               {financeiroSubTab === 'Vínculo e acompanhamento' && (
                 <div className="space-y-4">
                   {/* Classificação das equipes — primeiro */}
-                  <div className="rounded-md overflow-hidden border border-border grid grid-cols-5 text-center text-sm">
+                  <div
+                    className="rounded-md overflow-hidden border border-border grid grid-cols-5 text-center text-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+                    onClick={() => navigate('/financiamento-aps')}
+                  >
                     <div className="row-span-2 p-4 text-left text-[13px] font-medium text-muted-foreground border-r border-border flex items-center bg-card">
                       Classificação das equipes nesse componente
                     </div>
@@ -176,7 +179,10 @@ const SalaDeSituacao: React.FC = () => {
                   </div>
 
                   {/* Stats bar — ultra compacto */}
-                  <div className="bg-card rounded-lg border border-border overflow-hidden">
+                  <div
+                    className="bg-card rounded-lg border border-border overflow-hidden cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+                    onClick={() => navigate('/financiamento-aps')}
+                  >
                     <div className="grid grid-cols-3 divide-x divide-border">
                       {[
                         { label: 'Cadastro atualizado', value: 8241, pct: 58, total: 14210 },
@@ -184,7 +190,6 @@ const SalaDeSituacao: React.FC = () => {
                         { label: 'Acompanhadas', value: 4038, pct: 49, total: 8241 },
                       ].map((item) => (
                         <div key={item.label} className="px-3 py-2">
-                          {/* Label curto + total na mesma linha */}
                           <div className="flex items-center justify-between gap-2">
                             <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">
                               {item.label}
@@ -193,8 +198,6 @@ const SalaDeSituacao: React.FC = () => {
                               de {item.total.toLocaleString('pt-BR')}
                             </span>
                           </div>
-
-                          {/* Valor + barra na mesma linha horizontal */}
                           <div className="flex items-center gap-2 mt-1">
                             <span className="text-[18px] font-bold text-foreground tabular-nums">
                               {item.value.toLocaleString('pt-BR')}
@@ -288,7 +291,7 @@ const SalaDeSituacao: React.FC = () => {
         <SectionHeader
           title="Perfil APS"
           icon={<Users className="w-4 h-4 text-primary" />}
-          linkTo="/linhas-de-cuidado/gestantes/visao-geral"
+          linkTo="/linhas-de-cuidado"
           linkLabel="Linha de cuidado"
         />
 
@@ -307,7 +310,7 @@ const SalaDeSituacao: React.FC = () => {
         {perfilTab === 'Gestantes e puérperas' && (
           <div className="space-y-4">
             {/* Quantidade de gestações card */}
-            <Card className="overflow-hidden">
+            <Card className="overflow-hidden cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg" onClick={() => navigate('/linhas-de-cuidado/gestantes')}>
               <CardContent className="p-0">
                 <div className="px-6 py-5 bg-gradient-to-r from-primary/5 via-transparent to-transparent">
                   <div className="flex items-start gap-4">
@@ -368,7 +371,7 @@ const SalaDeSituacao: React.FC = () => {
             </Card>
 
             {/* Progresso das ações de pré-natal */}
-            <Card>
+            <Card className="cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg" onClick={() => navigate('/financiamento-aps/qualidade-esf-eap')}>
               <CardContent className="py-5">
                 <p className="text-sm font-medium text-muted-foreground mb-4">Progresso das ações de pré-natal</p>
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
@@ -396,7 +399,7 @@ const SalaDeSituacao: React.FC = () => {
 
         {/* Hipertensos */}
         {perfilTab === 'Hipertensos' && (
-          <Card>
+          <Card className="cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg" onClick={() => navigate('/linhas-de-cuidado/hipertensos')}>
             <CardHeader className="pb-2">
               <CardTitle className="text-base font-medium flex items-center gap-2">
                 <HeartPulse className="w-4 h-4 text-[hsl(var(--status-regular))]" />
@@ -420,7 +423,7 @@ const SalaDeSituacao: React.FC = () => {
 
         {/* Diabéticos */}
         {perfilTab === 'Diabéticos' && (
-          <Card>
+          <Card className="cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg" onClick={() => navigate('/linhas-de-cuidado/diabeticos')}>
             <CardHeader className="pb-2">
               <CardTitle className="text-base font-medium flex items-center gap-2">
                 <img src={iconeDiabetesActive} alt="Diabetes" className="w-4 h-4" />
