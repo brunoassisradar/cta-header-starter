@@ -125,7 +125,7 @@ const SalaDeSituacao: React.FC = () => {
         <SectionHeader
           title="Financeiro APS"
           icon={<DollarSign className="w-4 h-4 text-primary" />}
-          linkTo="/financeiro/visao-geral"
+          linkTo="/financeiro"
           linkLabel="Financeiro"
         />
 
