@@ -175,41 +175,39 @@ const SalaDeSituacao: React.FC = () => {
                     <div className="py-2 bg-[hsl(var(--status-regular-bg))] text-[hsl(var(--status-regular))] font-bold text-lg">{financeiro.vinculo.regular}</div>
                   </div>
 
-                  {/* Stats bar — abaixo da classificação, mais compacto */}
+                  {/* Stats bar — ultra compacto */}
                   <div className="bg-card rounded-lg border border-border overflow-hidden">
                     <div className="grid grid-cols-3 divide-x divide-border">
                       {[
-                        { label: 'Pessoas com cadastro atualizado', value: 8241, pct: 58, total: 14210 },
-                        { label: 'Pessoas com cadastro completo', value: 4263, pct: 30, total: 8241 },
-                        { label: 'Pessoas acompanhadas', value: 4038, pct: 49, total: 8241 },
+                        { label: 'Cadastro atualizado', value: 8241, pct: 58, total: 14210 },
+                        { label: 'Cadastro completo', value: 4263, pct: 30, total: 8241 },
+                        { label: 'Acompanhadas', value: 4038, pct: 49, total: 8241 },
                       ].map((item) => (
-                        <div key={item.label} className="p-3">
-                          {/* Label em uma linha, valor + pct na mesma linha */}
-                          <div className="flex items-baseline justify-between gap-2 mb-2">
-                            <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide leading-tight">
+                        <div key={item.label} className="px-3 py-2">
+                          {/* Label curto + total na mesma linha */}
+                          <div className="flex items-center justify-between gap-2">
+                            <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">
                               {item.label}
                             </p>
-                            <span className="text-[11px] text-muted-foreground">
+                            <span className="text-[10px] text-muted-foreground">
                               de {item.total.toLocaleString('pt-BR')}
                             </span>
                           </div>
 
-                          {/* Valor principal */}
-                          <div className="flex items-baseline gap-1.5 mb-2">
-                            <span className="text-[20px] font-bold text-foreground tabular-nums tracking-tight">
+                          {/* Valor + barra na mesma linha horizontal */}
+                          <div className="flex items-center gap-2 mt-1">
+                            <span className="text-[18px] font-bold text-foreground tabular-nums">
                               {item.value.toLocaleString('pt-BR')}
                             </span>
-                            <span className="text-[12px] font-medium text-muted-foreground tabular-nums">
-                              ({item.pct}%)
+                            <div className="flex-1 h-1 bg-muted rounded-full overflow-hidden">
+                              <div
+                                className="h-full rounded-full bg-muted-foreground/40"
+                                style={{ width: `${item.pct}%` }}
+                              />
+                            </div>
+                            <span className="text-[11px] font-medium text-muted-foreground tabular-nums">
+                              {item.pct}%
                             </span>
-                          </div>
-
-                          {/* Barra de progresso compacta */}
-                          <div className="h-1.5 bg-muted rounded-full overflow-hidden">
-                            <div
-                              className="h-full rounded-full bg-muted-foreground/40 transition-all"
-                              style={{ width: `${item.pct}%` }}
-                            />
                           </div>
                         </div>
                       ))}
