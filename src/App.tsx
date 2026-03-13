@@ -15,6 +15,7 @@ import LinhasDeCuidado from "./pages/LinhasDeCuidado";
 import GestantesVisaoGeral from "./pages/linhas-de-cuidado/GestantesVisaoGeral";
 import GestantesRelatorio from "./pages/linhas-de-cuidado/GestantesRelatorio";
 import GestantesIndividualizado from "./pages/linhas-de-cuidado/GestantesIndividualizado";
+import EmConstrucao from "./pages/linhas-de-cuidado/EmConstrucao";
 import QualidadeVisaoGeral from "./pages/QualidadeVisaoGeral";
 import QualidadeRelatorio from "./pages/QualidadeRelatorio";
 import QualidadeIndividualizado from "./pages/QualidadeIndividualizado";
