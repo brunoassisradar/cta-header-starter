@@ -163,7 +163,7 @@ const SalaDeSituacao: React.FC = () => {
                   {/* Classificação das equipes — primeiro */}
                   <div
                     className="rounded-md overflow-hidden border border-border grid grid-cols-5 text-center text-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
-                    onClick={() => navigate('/financiamento-aps')}
+                    onClick={() => navigate('/financiamento-aps/qualidade-esf-eap?tab=vinculo')}
                   >
                     <div className="row-span-2 p-4 text-left text-[13px] font-medium text-muted-foreground border-r border-border flex items-center bg-card">
                       Classificação das equipes nesse componente
@@ -181,7 +181,7 @@ const SalaDeSituacao: React.FC = () => {
                   {/* Stats bar — ultra compacto */}
                   <div
                     className="bg-card rounded-lg border border-border overflow-hidden cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
-                    onClick={() => navigate('/financiamento-aps')}
+                    onClick={() => navigate('/financiamento-aps/qualidade-esf-eap?tab=vinculo')}
                   >
                     <div className="grid grid-cols-3 divide-x divide-border">
                       {[
@@ -248,7 +248,7 @@ const SalaDeSituacao: React.FC = () => {
         )}
 
         {financeiroTab === 'Fundo Nacional de Saúde' && (
-          <Card>
+          <Card className="cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg" onClick={() => navigate('/financeiro/visao-geral')}>
             <CardHeader className="pb-2">
               <CardTitle className="text-base font-medium flex items-center gap-2">
                 <DollarSign className="w-4 h-4 text-primary" />
@@ -371,7 +371,7 @@ const SalaDeSituacao: React.FC = () => {
             </Card>
 
             {/* Progresso das ações de pré-natal */}
-            <Card className="cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg" onClick={() => navigate('/financiamento-aps/qualidade-esf-eap')}>
+            <Card className="cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg" onClick={() => navigate('/financiamento-aps/qualidade-esf-eap')}  >
               <CardContent className="py-5">
                 <p className="text-sm font-medium text-muted-foreground mb-4">Progresso das ações de pré-natal</p>
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
@@ -387,7 +387,7 @@ const SalaDeSituacao: React.FC = () => {
                   Dados calculados com base nos indicadores de qualidade do módulo de{' '}
                   <span
                     className="text-primary cursor-pointer hover:underline"
-                    onClick={() => navigate('/financeiro/visao-geral')}
+                    onClick={(e) => { e.stopPropagation(); navigate('/financiamento-aps/qualidade-esf-eap'); }}
                   >
                     Financiamento APS
                   </span>.
