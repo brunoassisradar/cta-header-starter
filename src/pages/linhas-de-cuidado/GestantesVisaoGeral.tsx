@@ -181,7 +181,7 @@ const GestantesVisaoGeral: React.FC = () => {
           {/* Qualidade do pré-natal */}
           <Card
             className="overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
-            onClick={() => navigate('/linhas-de-cuidado/gestantes/relatorio?indicador=acompanhamento')}
+            onClick={() => navigate('/financiamento-aps/qualidade-esf-eap?tab=qualidade')}
           >
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-muted-foreground">Qualidade do pré-natal</CardTitle>
