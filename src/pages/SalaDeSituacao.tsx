@@ -160,38 +160,47 @@ const SalaDeSituacao: React.FC = () => {
 
               {financeiroSubTab === 'Vínculo e acompanhamento' && (
                 <div className="space-y-4">
-                  {/* Stats bar */}
-                  <div className="grid grid-cols-3 gap-px bg-border rounded-lg overflow-hidden border border-border">
-                    {[
-                      { label: 'Pessoas com cadastro atualizado', value: 8241, pct: 58, total: 14210, color: 'hsl(210,70%,55%)' },
-                      { label: 'Pessoas com cadastro completo', value: 4263, pct: 30, total: 8241, color: 'hsl(174,55%,45%)' },
-                      { label: 'Pessoas acompanhadas', value: 4038, pct: 49, total: 8241, color: 'hsl(152,50%,40%)' },
-                    ].map((item) => (
-                      <div key={item.label} className="bg-card p-4 flex flex-col gap-3">
-                        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide leading-tight">
-                          {item.label}
-                        </span>
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="text-2xl font-bold" style={{ color: item.color }}>
-                            {item.value.toLocaleString('pt-BR')}
-                          </span>
-                          <span className="text-sm font-medium text-muted-foreground">
-                            / {item.total.toLocaleString('pt-BR')}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2.5">
-                          <div className="flex-1 h-[6px] bg-muted rounded-full overflow-hidden">
-                            <div
-                              className="h-full rounded-full transition-all"
-                              style={{ width: `${item.pct}%`, backgroundColor: item.color }}
-                            />
+                  {/* Stats bar — neutro para não confundir com classificações */}
+                  <div className="bg-card rounded-lg border border-border overflow-hidden">
+                    <div className="grid grid-cols-3 divide-x divide-border">
+                      {[
+                        { label: 'Pessoas com cadastro atualizado', value: 8241, pct: 58, total: 14210 },
+                        { label: 'Pessoas com cadastro completo', value: 4263, pct: 30, total: 8241 },
+                        { label: 'Pessoas acompanhadas', value: 4038, pct: 49, total: 8241 },
+                      ].map((item) => (
+                        <div key={item.label} className="p-5">
+                          {/* Label */}
+                          <p className="text-[12px] font-medium text-muted-foreground uppercase tracking-wide leading-tight mb-3">
+                            {item.label}
+                          </p>
+
+                          {/* Valor principal + percentual */}
+                          <div className="flex items-baseline gap-2 mb-1">
+                            <span className="text-[28px] font-bold text-foreground tabular-nums tracking-tight">
+                              {item.value.toLocaleString('pt-BR')}
+                            </span>
+                            <span className="text-[14px] font-semibold text-foreground/70 tabular-nums">
+                              ({item.pct}%)
+                            </span>
                           </div>
-                          <span className="text-xs font-semibold tabular-nums" style={{ color: item.color }}>
-                            {item.pct}%
-                          </span>
+
+                          {/* Barra de progresso — cinza neutro, sem cor de status */}
+                          <div className="flex items-center gap-3">
+                            <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                              <div
+                                className="h-full rounded-full bg-muted-foreground/50 transition-all"
+                                style={{ width: `${item.pct}%` }}
+                              />
+                            </div>
+                          </div>
+
+                          {/* Total abaixo */}
+                          <p className="text-[12px] text-muted-foreground mt-2">
+                            de <span className="font-medium text-foreground">{item.total.toLocaleString('pt-BR')}</span> cadastradas
+                          </p>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
 
                 <div className="rounded-md overflow-hidden border border-border grid grid-cols-5 text-center text-sm">
