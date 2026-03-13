@@ -248,7 +248,7 @@ const SalaDeSituacao: React.FC = () => {
         )}
 
         {financeiroTab === 'Fundo Nacional de Saúde' && (
-          <Card>
+          <Card className="cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg" onClick={() => navigate('/financeiro/visao-geral')}>
             <CardHeader className="pb-2">
               <CardTitle className="text-base font-medium flex items-center gap-2">
                 <DollarSign className="w-4 h-4 text-primary" />
