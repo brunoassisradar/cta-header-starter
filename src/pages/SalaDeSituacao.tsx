@@ -161,24 +161,28 @@ const SalaDeSituacao: React.FC = () => {
               {financeiroSubTab === 'Vínculo e acompanhamento' && (
                 <div className="space-y-4">
                   {/* Stats bar */}
-                  <div className="flex gap-8">
+                  <div className="flex gap-10">
                     {[
                       { label: 'Pessoas com cadastro atualizado', value: 8241, pct: 58, total: 14210 },
                       { label: 'Pessoas com cadastro completo', value: 4263, pct: 30, total: 8241 },
                       { label: 'Pessoas acompanhadas', value: 4038, pct: 49, total: 8241 },
                     ].map((item) => (
                       <div key={item.label} className="flex-1">
-                        <div className="flex items-baseline gap-2 mb-1">
-                          <span className="text-sm text-muted-foreground">{item.label}</span>
-                          <span className="text-sm font-semibold text-primary ml-auto">
-                            {item.value.toLocaleString('pt-BR')}{' '}
-                            <span className="text-primary">({item.pct}%)</span>
-                          </span>
-                          <span className="text-xs text-muted-foreground">/ {item.total.toLocaleString('pt-BR')}</span>
+                        <div className="flex items-baseline gap-3 mb-2">
+                          <span className="text-[13px] text-[hsl(0,0%,45%)] leading-tight">{item.label}</span>
+                          <div className="flex items-baseline gap-1 ml-auto whitespace-nowrap">
+                            <span className="text-[15px] font-semibold text-[hsl(152,50%,36%)]">
+                              {item.value.toLocaleString('pt-BR')}
+                            </span>
+                            <span className="text-[13px] font-medium text-[hsl(152,50%,36%)]">
+                              ({item.pct}%)
+                            </span>
+                            <span className="text-[13px] text-[hsl(0,0%,60%)]">/ {item.total.toLocaleString('pt-BR')}</span>
+                          </div>
                         </div>
-                        <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden">
+                        <div className="w-full h-[5px] bg-[hsl(210,20%,92%)] rounded-full overflow-hidden">
                           <div
-                            className="h-full bg-primary rounded-full transition-all"
+                            className="h-full bg-[hsl(210,70%,55%)] rounded-full transition-all"
                             style={{ width: `${item.pct}%` }}
                           />
                         </div>
