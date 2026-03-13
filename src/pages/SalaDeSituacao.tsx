@@ -159,6 +159,33 @@ const SalaDeSituacao: React.FC = () => {
               </div>
 
               {financeiroSubTab === 'Vínculo e acompanhamento' && (
+                <div className="space-y-4">
+                  {/* Stats bar */}
+                  <div className="flex gap-8">
+                    {[
+                      { label: 'Pessoas com cadastro atualizado', value: 8241, pct: 58, total: 14210 },
+                      { label: 'Pessoas com cadastro completo', value: 4263, pct: 30, total: 8241 },
+                      { label: 'Pessoas acompanhadas', value: 4038, pct: 49, total: 8241 },
+                    ].map((item) => (
+                      <div key={item.label} className="flex-1">
+                        <div className="flex items-baseline gap-2 mb-1">
+                          <span className="text-sm text-muted-foreground">{item.label}</span>
+                          <span className="text-sm font-semibold text-primary ml-auto">
+                            {item.value.toLocaleString('pt-BR')}{' '}
+                            <span className="text-primary">({item.pct}%)</span>
+                          </span>
+                          <span className="text-xs text-muted-foreground">/ {item.total.toLocaleString('pt-BR')}</span>
+                        </div>
+                        <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-primary rounded-full transition-all"
+                            style={{ width: `${item.pct}%` }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
                 <div className="rounded-md overflow-hidden border border-border grid grid-cols-5 text-center text-sm">
                   <div className="row-span-2 p-4 text-left text-[13px] font-medium text-muted-foreground border-r border-border flex items-center bg-card">
                     Classificação das equipes nesse componente
@@ -171,6 +198,7 @@ const SalaDeSituacao: React.FC = () => {
                   <div className="py-2 bg-[hsl(var(--status-bom-bg))] text-[hsl(var(--status-bom))] font-bold text-lg">{financeiro.vinculo.bom}</div>
                   <div className="py-2 bg-[hsl(var(--status-suficiente-bg))] text-[hsl(var(--status-suficiente))] font-bold text-lg">{financeiro.vinculo.suficiente}</div>
                   <div className="py-2 bg-[hsl(var(--status-regular-bg))] text-[hsl(var(--status-regular))] font-bold text-lg">{financeiro.vinculo.regular}</div>
+                </div>
                 </div>
               )}
 
