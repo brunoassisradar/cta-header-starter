@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -56,6 +59,16 @@ export default {
           "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
+        },
+        status: {
+          otimo: "hsl(var(--status-otimo))",
+          "otimo-bg": "hsl(var(--status-otimo-bg))",
+          bom: "hsl(var(--status-bom))",
+          "bom-bg": "hsl(var(--status-bom-bg))",
+          suficiente: "hsl(var(--status-suficiente))",
+          "suficiente-bg": "hsl(var(--status-suficiente-bg))",
+          regular: "hsl(var(--status-regular))",
+          "regular-bg": "hsl(var(--status-regular-bg))",
         },
       },
       borderRadius: {
