@@ -310,7 +310,7 @@ const SalaDeSituacao: React.FC = () => {
         {perfilTab === 'Gestantes e puérperas' && (
           <div className="space-y-4">
             {/* Quantidade de gestações card */}
-            <Card className="overflow-hidden">
+            <Card className="overflow-hidden cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg" onClick={() => navigate('/linhas-de-cuidado/gestantes')}>
               <CardContent className="p-0">
                 <div className="px-6 py-5 bg-gradient-to-r from-primary/5 via-transparent to-transparent">
                   <div className="flex items-start gap-4">
