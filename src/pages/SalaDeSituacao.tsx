@@ -371,7 +371,7 @@ const SalaDeSituacao: React.FC = () => {
             </Card>
 
             {/* Progresso das ações de pré-natal */}
-            <Card>
+            <Card className="cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg" onClick={() => navigate('/financiamento-aps/qualidade-esf-eap')}>
               <CardContent className="py-5">
                 <p className="text-sm font-medium text-muted-foreground mb-4">Progresso das ações de pré-natal</p>
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
