@@ -62,6 +62,10 @@ const resumo = {
 };
 
 const qualidade = {
+  otimo: 18,
+  bom: 32,
+  suficiente: 24,
+  regular: 11,
   consultas: { feitas: 342, total: 510 },
   procedimentos: { feitas: 189, total: 255 },
   vacinas: { feitas: 156, total: 204 },
