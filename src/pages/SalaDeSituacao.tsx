@@ -126,7 +126,7 @@ const SalaDeSituacao: React.FC = () => {
           title="Financeiro APS"
           icon={<DollarSign className="w-4 h-4 text-primary" />}
           linkTo="/financeiro/visao-geral"
-          linkLabel="Visão geral Financeira"
+          linkLabel="Financeiro"
         />
 
         <Segmented
@@ -246,6 +246,8 @@ const SalaDeSituacao: React.FC = () => {
         <SectionHeader
           title="Perfil APS"
           icon={<Users className="w-4 h-4 text-primary" />}
+          linkTo="/linhas-de-cuidado/gestantes/visao-geral"
+          linkLabel="Linha de cuidado"
         />
 
         <Segmented
