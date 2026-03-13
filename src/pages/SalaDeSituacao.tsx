@@ -161,30 +161,34 @@ const SalaDeSituacao: React.FC = () => {
               {financeiroSubTab === 'Vínculo e acompanhamento' && (
                 <div className="space-y-4">
                   {/* Stats bar */}
-                  <div className="flex gap-10">
+                  <div className="grid grid-cols-3 gap-px bg-border rounded-lg overflow-hidden border border-border">
                     {[
-                      { label: 'Pessoas com cadastro atualizado', value: 8241, pct: 58, total: 14210 },
-                      { label: 'Pessoas com cadastro completo', value: 4263, pct: 30, total: 8241 },
-                      { label: 'Pessoas acompanhadas', value: 4038, pct: 49, total: 8241 },
+                      { label: 'Pessoas com cadastro atualizado', value: 8241, pct: 58, total: 14210, color: 'hsl(210,70%,55%)' },
+                      { label: 'Pessoas com cadastro completo', value: 4263, pct: 30, total: 8241, color: 'hsl(174,55%,45%)' },
+                      { label: 'Pessoas acompanhadas', value: 4038, pct: 49, total: 8241, color: 'hsl(152,50%,40%)' },
                     ].map((item) => (
-                      <div key={item.label} className="flex-1">
-                        <div className="flex items-baseline gap-3 mb-2">
-                          <span className="text-[13px] text-[hsl(0,0%,45%)] leading-tight">{item.label}</span>
-                          <div className="flex items-baseline gap-1 ml-auto whitespace-nowrap">
-                            <span className="text-[15px] font-semibold text-[hsl(152,50%,36%)]">
-                              {item.value.toLocaleString('pt-BR')}
-                            </span>
-                            <span className="text-[13px] font-medium text-[hsl(152,50%,36%)]">
-                              ({item.pct}%)
-                            </span>
-                            <span className="text-[13px] text-[hsl(0,0%,60%)]">/ {item.total.toLocaleString('pt-BR')}</span>
-                          </div>
+                      <div key={item.label} className="bg-card p-4 flex flex-col gap-3">
+                        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide leading-tight">
+                          {item.label}
+                        </span>
+                        <div className="flex items-baseline gap-1.5">
+                          <span className="text-2xl font-bold" style={{ color: item.color }}>
+                            {item.value.toLocaleString('pt-BR')}
+                          </span>
+                          <span className="text-sm font-medium text-muted-foreground">
+                            / {item.total.toLocaleString('pt-BR')}
+                          </span>
                         </div>
-                        <div className="w-full h-[5px] bg-[hsl(210,20%,92%)] rounded-full overflow-hidden">
-                          <div
-                            className="h-full bg-[hsl(210,70%,55%)] rounded-full transition-all"
-                            style={{ width: `${item.pct}%` }}
-                          />
+                        <div className="flex items-center gap-2.5">
+                          <div className="flex-1 h-[6px] bg-muted rounded-full overflow-hidden">
+                            <div
+                              className="h-full rounded-full transition-all"
+                              style={{ width: `${item.pct}%`, backgroundColor: item.color }}
+                            />
+                          </div>
+                          <span className="text-xs font-semibold tabular-nums" style={{ color: item.color }}>
+                            {item.pct}%
+                          </span>
                         </div>
                       </div>
                     ))}
