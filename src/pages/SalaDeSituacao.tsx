@@ -565,7 +565,7 @@ const SalaDeSituacao: React.FC = () => {
                 </p>
               </div>
             </CardContent>
-            <div className="px-5 py-3 border-t border-border">
+            <div className="px-5 py-3 border-t border-border mt-auto">
               <p className="text-xs text-muted-foreground">Fonte: SIH.</p>
             </div>
           </Card>
