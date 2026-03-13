@@ -181,7 +181,7 @@ const SalaDeSituacao: React.FC = () => {
                   {/* Stats bar — ultra compacto */}
                   <div
                     className="bg-card rounded-lg border border-border overflow-hidden cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
-                    onClick={() => navigate('/financiamento-aps')}
+                    onClick={() => navigate('/financiamento-aps', { state: { tab: 'vinculo' } })}
                   >
                     <div className="grid grid-cols-3 divide-x divide-border">
                       {[
