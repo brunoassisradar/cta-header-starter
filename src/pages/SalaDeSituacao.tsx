@@ -541,7 +541,7 @@ const SalaDeSituacao: React.FC = () => {
           </Card>
 
           {/* ICSAPS */}
-          <Card>
+          <Card className="flex flex-col">
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-base font-medium flex items-center gap-2">
