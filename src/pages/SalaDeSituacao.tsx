@@ -387,7 +387,7 @@ const SalaDeSituacao: React.FC = () => {
                   Dados calculados com base nos indicadores de qualidade do módulo de{' '}
                   <span
                     className="text-primary cursor-pointer hover:underline"
-                    onClick={() => navigate('/financeiro/visao-geral')}
+                    onClick={(e) => { e.stopPropagation(); navigate('/financiamento-aps/qualidade-esf-eap'); }}
                   >
                     Financiamento APS
                   </span>.
