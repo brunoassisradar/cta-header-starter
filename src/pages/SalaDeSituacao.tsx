@@ -160,7 +160,22 @@ const SalaDeSituacao: React.FC = () => {
 
               {financeiroSubTab === 'Vínculo e acompanhamento' && (
                 <div className="space-y-4">
-                  {/* Stats bar — neutro para não confundir com classificações */}
+                  {/* Classificação das equipes — primeiro */}
+                  <div className="rounded-md overflow-hidden border border-border grid grid-cols-5 text-center text-sm">
+                    <div className="row-span-2 p-4 text-left text-[13px] font-medium text-muted-foreground border-r border-border flex items-center bg-card">
+                      Classificação das equipes nesse componente
+                    </div>
+                    <div className="py-2 bg-[hsl(var(--status-otimo))] text-white text-xs font-bold tracking-wide">ÓTIMO</div>
+                    <div className="py-2 bg-[hsl(var(--status-bom))] text-white text-xs font-bold tracking-wide">BOM</div>
+                    <div className="py-2 bg-[hsl(var(--status-suficiente))] text-white text-xs font-bold tracking-wide">SUFICIENTE</div>
+                    <div className="py-2 bg-[hsl(var(--status-regular))] text-white text-xs font-bold tracking-wide">REGULAR</div>
+                    <div className="py-2 bg-[hsl(var(--status-otimo-bg))] text-[hsl(var(--status-otimo))] font-bold text-lg">{financeiro.vinculo.otimo}</div>
+                    <div className="py-2 bg-[hsl(var(--status-bom-bg))] text-[hsl(var(--status-bom))] font-bold text-lg">{financeiro.vinculo.bom}</div>
+                    <div className="py-2 bg-[hsl(var(--status-suficiente-bg))] text-[hsl(var(--status-suficiente))] font-bold text-lg">{financeiro.vinculo.suficiente}</div>
+                    <div className="py-2 bg-[hsl(var(--status-regular-bg))] text-[hsl(var(--status-regular))] font-bold text-lg">{financeiro.vinculo.regular}</div>
+                  </div>
+
+                  {/* Stats bar — abaixo da classificação, mais compacto */}
                   <div className="bg-card rounded-lg border border-border overflow-hidden">
                     <div className="grid grid-cols-3 divide-x divide-border">
                       {[
@@ -168,54 +183,38 @@ const SalaDeSituacao: React.FC = () => {
                         { label: 'Pessoas com cadastro completo', value: 4263, pct: 30, total: 8241 },
                         { label: 'Pessoas acompanhadas', value: 4038, pct: 49, total: 8241 },
                       ].map((item) => (
-                        <div key={item.label} className="p-5">
-                          {/* Label */}
-                          <p className="text-[12px] font-medium text-muted-foreground uppercase tracking-wide leading-tight mb-3">
-                            {item.label}
-                          </p>
+                        <div key={item.label} className="p-3">
+                          {/* Label em uma linha, valor + pct na mesma linha */}
+                          <div className="flex items-baseline justify-between gap-2 mb-2">
+                            <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide leading-tight">
+                              {item.label}
+                            </p>
+                            <span className="text-[11px] text-muted-foreground">
+                              de {item.total.toLocaleString('pt-BR')}
+                            </span>
+                          </div>
 
-                          {/* Valor principal + percentual */}
-                          <div className="flex items-baseline gap-2 mb-1">
-                            <span className="text-[28px] font-bold text-foreground tabular-nums tracking-tight">
+                          {/* Valor principal */}
+                          <div className="flex items-baseline gap-1.5 mb-2">
+                            <span className="text-[20px] font-bold text-foreground tabular-nums tracking-tight">
                               {item.value.toLocaleString('pt-BR')}
                             </span>
-                            <span className="text-[14px] font-semibold text-foreground/70 tabular-nums">
+                            <span className="text-[12px] font-medium text-muted-foreground tabular-nums">
                               ({item.pct}%)
                             </span>
                           </div>
 
-                          {/* Barra de progresso — cinza neutro, sem cor de status */}
-                          <div className="flex items-center gap-3">
-                            <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                              <div
-                                className="h-full rounded-full bg-muted-foreground/50 transition-all"
-                                style={{ width: `${item.pct}%` }}
-                              />
-                            </div>
+                          {/* Barra de progresso compacta */}
+                          <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+                            <div
+                              className="h-full rounded-full bg-muted-foreground/40 transition-all"
+                              style={{ width: `${item.pct}%` }}
+                            />
                           </div>
-
-                          {/* Total abaixo */}
-                          <p className="text-[12px] text-muted-foreground mt-2">
-                            de <span className="font-medium text-foreground">{item.total.toLocaleString('pt-BR')}</span> cadastradas
-                          </p>
                         </div>
                       ))}
                     </div>
                   </div>
-
-                <div className="rounded-md overflow-hidden border border-border grid grid-cols-5 text-center text-sm">
-                  <div className="row-span-2 p-4 text-left text-[13px] font-medium text-muted-foreground border-r border-border flex items-center bg-card">
-                    Classificação das equipes nesse componente
-                  </div>
-                  <div className="py-2 bg-[hsl(var(--status-otimo))] text-white text-xs font-bold tracking-wide">ÓTIMO</div>
-                  <div className="py-2 bg-[hsl(var(--status-bom))] text-white text-xs font-bold tracking-wide">BOM</div>
-                  <div className="py-2 bg-[hsl(var(--status-suficiente))] text-white text-xs font-bold tracking-wide">SUFICIENTE</div>
-                  <div className="py-2 bg-[hsl(var(--status-regular))] text-white text-xs font-bold tracking-wide">REGULAR</div>
-                  <div className="py-2 bg-[hsl(var(--status-otimo-bg))] text-[hsl(var(--status-otimo))] font-bold text-lg">{financeiro.vinculo.otimo}</div>
-                  <div className="py-2 bg-[hsl(var(--status-bom-bg))] text-[hsl(var(--status-bom))] font-bold text-lg">{financeiro.vinculo.bom}</div>
-                  <div className="py-2 bg-[hsl(var(--status-suficiente-bg))] text-[hsl(var(--status-suficiente))] font-bold text-lg">{financeiro.vinculo.suficiente}</div>
-                  <div className="py-2 bg-[hsl(var(--status-regular-bg))] text-[hsl(var(--status-regular))] font-bold text-lg">{financeiro.vinculo.regular}</div>
-                </div>
                 </div>
               )}
 
