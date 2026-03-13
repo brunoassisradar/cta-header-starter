@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import gestantePerfilIcon from '@/assets/gestante-perfil-icon.png';
+import iconeGestanteActive from '@/assets/icone-gestante-active.svg';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { CareLineFilterBar } from '@/components/gestantes/CareLineFilterBar';
 import { ClassificationCard } from '@/components/financiamento/ClassificationCard';
