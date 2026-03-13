@@ -112,7 +112,7 @@ const GestantesVisaoGeral: React.FC = () => {
               <div className="px-6 py-5 bg-gradient-to-r from-primary/5 via-transparent to-transparent">
                 <div className="flex items-start gap-4">
                   <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 shrink-0">
-                    <img src={gestantePerfilIcon} alt="Gestante" className="w-7 h-7" />
+                    <img src={iconeGestanteActive} alt="Gestante" className="w-7 h-7" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="text-base font-semibold text-foreground">Quantidade de gestações</h4>
