@@ -161,7 +161,10 @@ const SalaDeSituacao: React.FC = () => {
               {financeiroSubTab === 'Vínculo e acompanhamento' && (
                 <div className="space-y-4">
                   {/* Classificação das equipes — primeiro */}
-                  <div className="rounded-md overflow-hidden border border-border grid grid-cols-5 text-center text-sm">
+                  <div
+                    className="rounded-md overflow-hidden border border-border grid grid-cols-5 text-center text-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+                    onClick={() => navigate('/financiamento-aps')}
+                  >
                     <div className="row-span-2 p-4 text-left text-[13px] font-medium text-muted-foreground border-r border-border flex items-center bg-card">
                       Classificação das equipes nesse componente
                     </div>
