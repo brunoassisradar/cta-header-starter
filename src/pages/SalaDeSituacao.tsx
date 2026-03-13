@@ -551,15 +551,15 @@ const SalaDeSituacao: React.FC = () => {
                 <HelpCircle className="w-4 h-4 text-muted-foreground" />
               </div>
             </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="flex items-start gap-4 p-4 rounded-lg bg-accent/50">
-                <span className="text-2xl font-bold text-primary shrink-0">{metricas.icsaps.municipio}%</span>
+            <CardContent className="space-y-3 flex-1">
+              <div className="flex items-center gap-4 p-4 rounded-lg bg-accent/50">
+                <span className="text-2xl font-bold text-primary shrink-0 w-16 text-center">{metricas.icsaps.municipio}%</span>
                 <p className="text-sm text-muted-foreground">
                   das internações no município foram por Condições Sensíveis à Atenção Primária em {metricas.icsaps.ano}.
                 </p>
               </div>
-              <div className="flex items-start gap-4 p-4 rounded-lg bg-accent/50">
-                <span className="text-2xl font-bold text-primary shrink-0">{metricas.icsaps.residentes}%</span>
+              <div className="flex items-center gap-4 p-4 rounded-lg bg-accent/50">
+                <span className="text-2xl font-bold text-primary shrink-0 w-16 text-center">{metricas.icsaps.residentes}%</span>
                 <p className="text-sm text-muted-foreground">
                   das internações de residentes do município foram por Condições Sensíveis à Atenção Primária em {metricas.icsaps.ano}.
                 </p>
