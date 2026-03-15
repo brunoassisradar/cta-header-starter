@@ -295,18 +295,21 @@ const SalaDeSituacao: React.FC = () => {
 
       {/* ═══════════ PERFIL APS ═══════════ */}
       <section className="space-y-4">
-        <SectionHeader
-          title="Perfil APS"
-          icon={<Users className="w-4 h-4 text-primary" />}
-          linkTo="/linhas-de-cuidado"
-          linkLabel="Linha de cuidado"
-        />
+        <div className="flex items-center justify-end">
+          <button
+            onClick={() => navigate('/linhas-de-cuidado')}
+            className="flex items-center gap-1 text-[13px] font-medium text-primary hover:text-primary/80 transition-colors"
+          >
+            Linha de cuidado
+            <ChevronRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
 
         <Segmented
           options={[
-            { label: <span className="inline-flex items-center gap-1.5"><img src={perfilTab === 'Gestantes e puérperas' ? iconeGestanteActive : iconeGestanteDefault} alt="Gestante" className="w-4 h-4" /> Gestantes e puérperas</span>, value: 'Gestantes e puérperas' },
             { label: <span className="inline-flex items-center gap-1.5"><HeartPulse className="w-4 h-4" /> Hipertensos</span>, value: 'Hipertensos' },
             { label: <span className="inline-flex items-center gap-1.5"><img src={perfilTab === 'Diabéticos' ? iconeDiabetesActive : iconeDiabetesDefault} alt="Diabéticos" className="w-4 h-4" /> Diabéticos</span>, value: 'Diabéticos' },
+            { label: <span className="inline-flex items-center gap-1.5"><img src={perfilTab === 'Gestantes e puérperas' ? iconeGestanteActive : iconeGestanteDefault} alt="Gestante" className="w-4 h-4" /> Gestantes e puérperas</span>, value: 'Gestantes e puérperas' },
             { label: <span className="inline-flex items-center gap-1.5"><img src={perfilTab === 'Crianças' ? iconeCriancaActive : iconeCriancaDefault} alt="Crianças" className="w-4 h-4" /> Crianças</span>, value: 'Crianças' },
           ]}
           value={perfilTab}
