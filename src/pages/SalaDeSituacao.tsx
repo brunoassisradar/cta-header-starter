@@ -126,12 +126,15 @@ const SalaDeSituacao: React.FC = () => {
 
       {/* ═══════════ FINANCEIRO APS ═══════════ */}
       <section className="space-y-4">
-        <SectionHeader
-          title="Financeiro APS"
-          icon={<DollarSign className="w-4 h-4 text-primary" />}
-          linkTo="/financeiro"
-          linkLabel="Financeiro"
-        />
+        <div className="flex items-center justify-end">
+          <button
+            onClick={() => navigate('/financeiro')}
+            className="flex items-center gap-1 text-[13px] font-medium text-primary hover:text-primary/80 transition-colors"
+          >
+            Financeiro
+            <ChevronRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
 
         <Segmented
           options={[
