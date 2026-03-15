@@ -536,10 +536,6 @@ const SalaDeSituacao: React.FC = () => {
 
       {/* ═══════════ MÉTRICAS APS ═══════════ */}
       <section className="space-y-4">
-        <SectionHeader
-          title="Métricas APS"
-          icon={<Users className="w-4 h-4 text-primary" />}
-        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Nota IEGM */}
