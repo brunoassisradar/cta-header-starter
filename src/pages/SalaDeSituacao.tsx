@@ -139,7 +139,7 @@ const SalaDeSituacao: React.FC = () => {
         <Segmented
           options={[
             { label: <span className="inline-flex items-center gap-1.5"><Wallet className="w-4 h-4" /> Financiamento</span>, value: 'Financiamento' },
-            { label: <span className="inline-flex items-center gap-1.5"><CircleDollarSign className="w-4 h-4" /> Fundo Nacional de Saúde</span>, value: 'Fundo Nacional de Saúde' },
+            { label: <span className="inline-flex items-center gap-1.5"><CircleDollarSign className="w-4 h-4" /> Evolução Financeira</span>, value: 'Evolução Financeira' },
           ]}
           value={financeiroTab}
           onChange={(val) => setFinanceiroTab(val as string)}
