@@ -4,7 +4,15 @@ import { AppSidebar } from './AppSidebar';
 import { AppHeader } from './AppHeader';
 
 export const AppLayout: React.FC = () => {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
+    return localStorage.getItem('sidebar-collapsed') === 'true';
+  });
+
+  const handleToggleSidebar = (value?: boolean) => {
+    const newValue = value !== undefined ? value : !sidebarCollapsed;
+    setSidebarCollapsed(newValue);
+    localStorage.setItem('sidebar-collapsed', String(newValue));
+  };
   
   return (
     <div className="flex h-screen flex-col overflow-hidden bg-background">
