@@ -127,7 +127,15 @@ const SalaDeSituacao: React.FC = () => {
 
       {/* ═══════════ FINANCEIRO APS ═══════════ */}
       <section className="space-y-4">
-        <div className="flex items-center justify-end">
+        <div className="flex items-center justify-between">
+          <Segmented
+            options={[
+              { label: <span className="inline-flex items-center gap-1.5"><Wallet className="w-4 h-4" /> Financiamento</span>, value: 'Financiamento' },
+              { label: <span className="inline-flex items-center gap-1.5"><CircleDollarSign className="w-4 h-4" /> Evolução Financeira</span>, value: 'Evolução Financeira' },
+            ]}
+            value={financeiroTab}
+            onChange={(val) => setFinanceiroTab(val as string)}
+          />
           <button
             onClick={() => navigate('/financeiro')}
             className="flex items-center gap-1 text-[13px] font-medium text-primary hover:text-primary/80 transition-colors"
@@ -136,15 +144,6 @@ const SalaDeSituacao: React.FC = () => {
             <ChevronRight className="w-3.5 h-3.5" />
           </button>
         </div>
-
-        <Segmented
-          options={[
-            { label: <span className="inline-flex items-center gap-1.5"><Wallet className="w-4 h-4" /> Financiamento</span>, value: 'Financiamento' },
-            { label: <span className="inline-flex items-center gap-1.5"><CircleDollarSign className="w-4 h-4" /> Evolução Financeira</span>, value: 'Evolução Financeira' },
-          ]}
-          value={financeiroTab}
-          onChange={(val) => setFinanceiroTab(val as string)}
-        />
 
         {financeiroTab === 'Financiamento' && (
           <Card>
