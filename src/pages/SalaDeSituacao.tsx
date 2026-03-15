@@ -13,6 +13,7 @@ import { SectionHeader } from '@/components/gestantes/SectionHeader';
 import { ClassificationCard } from '@/components/financiamento/ClassificationCard';
 import { Segmented } from 'antd';
 import {
+  ChevronRight,
   DollarSign,
   CircleDollarSign,
   Users,
