@@ -113,7 +113,14 @@ const menuItems: MenuItem[] = [
   { label: 'Planejamento ass...', icon: Compass, path: '#' },
   { label: 'Análise de produção', icon: FileText, path: '#' },
   { label: 'Geocalização', icon: MapPin, path: '#' },
-  { label: 'Configuração', icon: Settings, path: '#' },
+  {
+    label: 'Configuração',
+    icon: Settings,
+    path: '#',
+    children: [
+      { label: 'Recebimento de Dados', path: '/configuracoes/recebimento-de-dados', hasActiveState: true },
+    ],
+  },
 ];
 
 export const AppSidebar: React.FC<AppSidebarProps> = ({ collapsed }) => {
