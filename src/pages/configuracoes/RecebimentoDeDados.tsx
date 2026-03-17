@@ -3,7 +3,6 @@ import { Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { ClassificationCard } from '@/components/financiamento/ClassificationCard';
-import { FilterBar } from '@/components/financiamento/FilterBar';
 
 type AlertStatus = 'em_dia' | 'em_atraso';
 
@@ -103,7 +102,7 @@ const AlertStatusBadge: React.FC<{ status: AlertStatus; type: 'alerta' | 'dados'
   };
   const colors = {
     em_dia: 'bg-[hsl(var(--status-bom))]',
-    em_atraso: 'bg-[hsl(var(--status-regular))]',
+    em_atraso: 'bg-[hsl(var(--status-suficiente))]',
   };
 
   return (
@@ -194,12 +193,10 @@ const RecebimentoDeDados: React.FC = () => {
       </div>
 
       <div className="space-y-6">
-        <FilterBar />
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <ClassificationCard classification="bom" count={12} label="Recebimentos em dia" countLabel="" />
-          <ClassificationCard classification="suficiente" count={5} label="Recebimentos em atraso" countLabel="" />
-          <ClassificationCard classification="regular" count={3} label="Dados em atraso" countLabel="" />
+          <ClassificationCard classification="bom" count={12} label="Recebimentos em dia" countLabel=" " />
+          <ClassificationCard classification="suficiente" count={5} label="Recebimentos em atraso" countLabel=" " />
+          <ClassificationCard classification="regular" count={3} label="Dados em atraso" countLabel=" " />
         </div>
 
         <div className="rounded-lg bg-card p-4 shadow-sm">
@@ -212,6 +209,7 @@ const RecebimentoDeDados: React.FC = () => {
             columns={columns}
             dataSource={sampleData}
             expandable={{
+              defaultExpandedRowKeys: ['1'],
               expandedRowRender: (record) => <ExpandedRow record={record} />,
               expandIcon: ({ expanded, onExpand, record }) => (
                 <span
