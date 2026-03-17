@@ -3,7 +3,6 @@ import { Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { ClassificationCard } from '@/components/financiamento/ClassificationCard';
-import { FilterBar } from '@/components/financiamento/FilterBar';
 
 type AlertStatus = 'em_dia' | 'em_atraso';
 
