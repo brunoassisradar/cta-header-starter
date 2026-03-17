@@ -70,6 +70,7 @@ const App = () => (
                 <Route path="/comunicacao" element={<Comunicacao />} />
                 <Route path="/comunicacao/minhas-comunicacoes" element={<MinhasComunicacoes />} />
                 <Route path="/comunicacao/campanha/:id" element={<CampanhaDetalhe />} />
+                <Route path="/configuracoes/recebimento-de-dados" element={<RecebimentoDeDados />} />
               </Route>
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
