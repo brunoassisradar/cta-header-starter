@@ -103,7 +103,7 @@ const AlertStatusBadge: React.FC<{ status: AlertStatus; type: 'alerta' | 'dados'
   };
   const colors = {
     em_dia: 'bg-[hsl(var(--status-bom))]',
-    em_atraso: 'bg-[hsl(var(--status-regular))]',
+    em_atraso: 'bg-[hsl(var(--status-suficiente))]',
   };
 
   return (
