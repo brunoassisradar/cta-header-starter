@@ -210,6 +210,7 @@ const RecebimentoDeDados: React.FC = () => {
             columns={columns}
             dataSource={sampleData}
             expandable={{
+              defaultExpandedRowKeys: ['1'],
               expandedRowRender: (record) => <ExpandedRow record={record} />,
               expandIcon: ({ expanded, onExpand, record }) => (
                 <span
