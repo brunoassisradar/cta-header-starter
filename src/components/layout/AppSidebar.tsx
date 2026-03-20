@@ -13,6 +13,7 @@ import {
   Compass,
   MapPin,
   Settings,
+  MessageSquare,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -30,7 +31,7 @@ interface SecondaryMenuItem {
   label: string;
   path: string;
   hasActiveState?: boolean;
-  tabKey?: string; // The tab key to check for active state
+  tabKey?: string;
   children?: TertiaryMenuItem[];
 }
 
@@ -98,16 +99,16 @@ const menuItems: MenuItem[] = [
     icon: DollarSign,
     path: '/financeiro',
     children: [
-      {
-        label: 'Visão geral',
-        path: '/financeiro/visao-geral',
-        hasActiveState: true,
-      },
-      {
-        label: 'Relatório',
-        path: '/financeiro/relatorio',
-        hasActiveState: true,
-      },
+      { label: 'Visão geral', path: '/financeiro/visao-geral', hasActiveState: true },
+      { label: 'Relatório', path: '/financeiro/relatorio', hasActiveState: true },
+    ],
+  },
+  {
+    label: 'Comunicação',
+    icon: MessageSquare,
+    path: '/comunicacao',
+    children: [
+      { label: 'Minhas comunicações', path: '/comunicacao/minhas-comunicacoes', hasActiveState: true },
     ],
   },
   { label: 'Planejamento ass...', icon: Compass, path: '#' },
