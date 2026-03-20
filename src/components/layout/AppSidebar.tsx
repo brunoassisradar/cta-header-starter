@@ -16,10 +16,101 @@ import {
   MessageSquare,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-...
-  { label: 'Comunicação', icon: MessageSquare, path: '/comunicacao', children: [
-    { label: 'Minhas comunicações', path: '/comunicacao/minhas-comunicacoes', hasActiveState: true },
-  ]},
+
+interface AppSidebarProps {
+  collapsed: boolean;
+  onCollapse: (collapsed: boolean) => void;
+}
+
+interface TertiaryMenuItem {
+  label: string;
+  path: string;
+}
+
+interface SecondaryMenuItem {
+  label: string;
+  path: string;
+  hasActiveState?: boolean;
+  tabKey?: string;
+  children?: TertiaryMenuItem[];
+}
+
+interface MenuItem {
+  label: string;
+  icon: React.ComponentType<{ className?: string }>;
+  path?: string;
+  children?: SecondaryMenuItem[];
+}
+
+const menuItems: MenuItem[] = [
+  { label: 'Sala de situação', icon: Home, path: '/sala-de-situacao' },
+  {
+    label: 'Linhas de cuidado',
+    icon: Heart,
+    path: '/linhas-de-cuidado',
+    children: [
+      { label: 'Hipertensão', path: '#', hasActiveState: false },
+      { label: 'Diabetes', path: '#', hasActiveState: false },
+      {
+        label: 'Gestantes e Puérperas',
+        path: '/linhas-de-cuidado/gestantes',
+        hasActiveState: true,
+        children: [
+          { label: 'Visão geral', path: '/linhas-de-cuidado/gestantes' },
+          { label: 'Relatório', path: '/linhas-de-cuidado/gestantes/relatorio' },
+          { label: 'Individualizado', path: '/linhas-de-cuidado/gestantes/individualizado' },
+        ]
+      },
+      { label: 'Idosos', path: '#', hasActiveState: false },
+      { label: 'Saúde mental', path: '#', hasActiveState: false },
+    ],
+  },
+  {
+    label: 'Financiamento APS',
+    icon: Wallet,
+    path: '/financiamento-aps',
+    children: [
+      {
+        label: 'Vínculo e acompanhamento',
+        path: '/financiamento-aps/qualidade-esf-eap?tab=vinculo',
+        hasActiveState: true,
+        tabKey: 'vinculo',
+        children: [
+          { label: 'Visão geral', path: '/financiamento-aps/qualidade-esf-eap?tab=vinculo' },
+          { label: 'Relatório', path: '/financiamento-aps/qualidade-esf-eap/relatorio?tab=vinculo' },
+          { label: 'Individualizado', path: '/financiamento-aps/qualidade-esf-eap/individualizado?tab=vinculo' },
+        ],
+      },
+      {
+        label: 'Qualidade eSF/eAP',
+        path: '/financiamento-aps/qualidade-esf-eap?tab=qualidade',
+        hasActiveState: true,
+        tabKey: 'qualidade',
+        children: [
+          { label: 'Visão geral', path: '/financiamento-aps/qualidade-esf-eap?tab=qualidade' },
+          { label: 'Relatório', path: '/financiamento-aps/qualidade-esf-eap/relatorio?tab=qualidade' },
+          { label: 'Individualizado', path: '/financiamento-aps/qualidade-esf-eap/individualizado?tab=qualidade' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Financeiro',
+    icon: DollarSign,
+    path: '/financeiro',
+    children: [
+      { label: 'Visão geral', path: '/financeiro/visao-geral', hasActiveState: true },
+      { label: 'Relatório', path: '/financeiro/relatorio', hasActiveState: true },
+    ],
+  },
+  {
+    label: 'Comunicação',
+    icon: MessageSquare,
+    path: '/comunicacao',
+    children: [
+      { label: 'Minhas comunicações', path: '/comunicacao/minhas-comunicacoes', hasActiveState: true },
+    ],
+  },
   { label: 'Planejamento ass...', icon: Compass, path: '#' },
   { label: 'Análise de produção', icon: FileText, path: '#' },
   { label: 'Geocalização', icon: MapPin, path: '#' },
