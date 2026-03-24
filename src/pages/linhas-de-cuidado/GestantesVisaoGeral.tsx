@@ -199,7 +199,12 @@ const GestantesVisaoGeral: React.FC = () => {
             onClick={() => navigate('/financiamento-aps/qualidade-esf-eap?tab=qualidade')}
           >
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Qualidade do pré-natal</CardTitle>
+              <div className="flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground">Qualidade do pré-natal</CardTitle>
+                <span className="inline-flex items-center text-[11px] font-medium px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
+                  Gestações encerradas
+                </span>
+              </div>
             </CardHeader>
             <CardContent className="space-y-5 pb-0">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
