@@ -177,11 +177,16 @@ const GestantesVisaoGeral: React.FC = () => {
 
         {/* ═══════════ ACOMPANHAMENTO ═══════════ */}
         <section className="space-y-4">
-          <SectionHeader
-            title="Acompanhamento"
-            icon={<CalendarCheck className="w-4 h-4 text-primary" />}
-            linkTo="/linhas-de-cuidado/gestantes/relatorio?indicador=acompanhamento"
-          />
+          <div className="space-y-1">
+            <SectionHeader
+              title="Acompanhamento"
+              icon={<CalendarCheck className="w-4 h-4 text-primary" />}
+              linkTo="/linhas-de-cuidado/gestantes/relatorio?indicador=acompanhamento"
+            />
+            <p className="text-xs text-muted-foreground ml-9">
+              Gestações encerradas — avaliadas conforme indicadores do Financiamento APS
+            </p>
+          </div>
 
           {/* Qualidade do pré-natal */}
           <Card
