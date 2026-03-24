@@ -99,7 +99,7 @@ const GestantesVisaoGeral: React.FC = () => {
         <section className="space-y-4">
           <div className="space-y-1">
             <SectionHeader
-              title="Perfil"
+              title="Perfil de gestações ativas"
               icon={<Users className="w-4 h-4 text-primary" />}
               linkTo="/linhas-de-cuidado/gestantes/relatorio?indicador=perfil"
             />
