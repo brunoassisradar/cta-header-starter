@@ -120,7 +120,12 @@ const GestantesVisaoGeral: React.FC = () => {
                     <img src={iconeGestanteActive} alt="Gestante" className="w-7 h-7" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-base font-semibold text-foreground">Quantidade de gestações</h4>
+                    <div className="flex items-center gap-2">
+                      <h4 className="text-base font-semibold text-foreground">Quantidade de gestações</h4>
+                      <span className="inline-flex items-center text-[11px] font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                        Em andamento
+                      </span>
+                    </div>
                     <p className="text-sm text-muted-foreground leading-relaxed mt-1">
                       No total existem{' '}
                       <span className="font-semibold text-foreground">{resumo.totalGestantes} gestantes ativas</span>,
