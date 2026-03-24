@@ -97,11 +97,16 @@ const GestantesVisaoGeral: React.FC = () => {
 
         {/* ═══════════ PERFIL ═══════════ */}
         <section className="space-y-4">
-          <SectionHeader
-            title="Perfil"
-            icon={<Users className="w-4 h-4 text-primary" />}
-            linkTo="/linhas-de-cuidado/gestantes/relatorio?indicador=perfil"
-          />
+          <div className="space-y-1">
+            <SectionHeader
+              title="Perfil"
+              icon={<Users className="w-4 h-4 text-primary" />}
+              linkTo="/linhas-de-cuidado/gestantes/relatorio?indicador=perfil"
+            />
+            <p className="text-xs text-muted-foreground ml-9">
+              Gestações em andamento — independente do trimestre gestacional
+            </p>
+          </div>
 
           <Card
             className="overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
