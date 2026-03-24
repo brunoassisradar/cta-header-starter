@@ -97,11 +97,16 @@ const GestantesVisaoGeral: React.FC = () => {
 
         {/* ═══════════ PERFIL ═══════════ */}
         <section className="space-y-4">
-          <SectionHeader
-            title="Perfil"
-            icon={<Users className="w-4 h-4 text-primary" />}
-            linkTo="/linhas-de-cuidado/gestantes/relatorio?indicador=perfil"
-          />
+          <div className="space-y-1">
+            <SectionHeader
+              title="Perfil"
+              icon={<Users className="w-4 h-4 text-primary" />}
+              linkTo="/linhas-de-cuidado/gestantes/relatorio?indicador=perfil"
+            />
+            <p className="text-xs text-muted-foreground ml-9">
+              Gestações em andamento — independente do trimestre gestacional
+            </p>
+          </div>
 
           <Card
             className="overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
@@ -115,7 +120,12 @@ const GestantesVisaoGeral: React.FC = () => {
                     <img src={iconeGestanteActive} alt="Gestante" className="w-7 h-7" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-base font-semibold text-foreground">Quantidade de gestações</h4>
+                    <div className="flex items-center gap-2">
+                      <h4 className="text-base font-semibold text-foreground">Quantidade de gestações</h4>
+                      <span className="inline-flex items-center text-[11px] font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                        Em andamento
+                      </span>
+                    </div>
                     <p className="text-sm text-muted-foreground leading-relaxed mt-1">
                       No total existem{' '}
                       <span className="font-semibold text-foreground">{resumo.totalGestantes} gestantes ativas</span>,
@@ -172,11 +182,16 @@ const GestantesVisaoGeral: React.FC = () => {
 
         {/* ═══════════ ACOMPANHAMENTO ═══════════ */}
         <section className="space-y-4">
-          <SectionHeader
-            title="Acompanhamento"
-            icon={<CalendarCheck className="w-4 h-4 text-primary" />}
-            linkTo="/linhas-de-cuidado/gestantes/relatorio?indicador=acompanhamento"
-          />
+          <div className="space-y-1">
+            <SectionHeader
+              title="Acompanhamento"
+              icon={<CalendarCheck className="w-4 h-4 text-primary" />}
+              linkTo="/linhas-de-cuidado/gestantes/relatorio?indicador=acompanhamento"
+            />
+            <p className="text-xs text-muted-foreground ml-9">
+              Gestações encerradas — avaliadas conforme indicadores do Financiamento APS
+            </p>
+          </div>
 
           {/* Qualidade do pré-natal */}
           <Card
@@ -184,7 +199,12 @@ const GestantesVisaoGeral: React.FC = () => {
             onClick={() => navigate('/financiamento-aps/qualidade-esf-eap?tab=qualidade')}
           >
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Qualidade do pré-natal</CardTitle>
+              <div className="flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground">Qualidade do pré-natal</CardTitle>
+                <span className="inline-flex items-center text-[11px] font-medium px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
+                  Gestações encerradas
+                </span>
+              </div>
             </CardHeader>
             <CardContent className="space-y-5 pb-0">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
