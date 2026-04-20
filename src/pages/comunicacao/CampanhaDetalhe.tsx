@@ -156,9 +156,6 @@ const CampanhaDetalhe: React.FC = () => {
     toast.success(`Disparo iniciado para ${activeRow?.nome}`);
     closeModal();
   };
-  const handleRetry = (row: DispatchData) => {
-    toast.success(`Nova tentativa de disparo enviada para ${row.nome}`);
-  };
 
   const { funil } = campaignData;
   const maxFunil = funil.total;
@@ -386,15 +383,6 @@ const CampanhaDetalhe: React.FC = () => {
                 { label: 'Lida', value: 'Lida' },
                 { label: 'Respondida Completa', value: 'Respondida Completa' },
                 { label: 'Não enviado', value: 'Não enviado' },
-              ]}
-            />
-            <Select
-              placeholder="Todas as classificações"
-              style={{ width: 200 }}
-              allowClear
-              options={[
-                { label: 'Sem classificação', value: 'Sem classificação' },
-                { label: 'Sem WhatsApp', value: 'Sem WhatsApp' },
               ]}
             />
           </div>
