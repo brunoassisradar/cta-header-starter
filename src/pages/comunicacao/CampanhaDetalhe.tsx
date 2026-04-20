@@ -56,6 +56,7 @@ const campaignData = {
 const situacaoColorMap: Record<string, string> = {
   Entregue: 'blue',
   Erro: 'red',
+  'Erro sem WhatsApp': 'red',
   Lida: 'cyan',
   'Respondida Completa': 'purple',
   'Não enviado': 'default',
@@ -101,7 +102,8 @@ const ElegibilidadeBadge: React.FC<{ row: DispatchData }> = ({ row }) => {
 };
 
 const SituacaoCell: React.FC<{ row: DispatchData }> = ({ row }) => {
-  const isFalhaContato = row.situacao === 'Erro' && row.tentativas >= row.maxTentativas;
+  const isError = row.situacao === 'Erro' || row.situacao === 'Erro sem WhatsApp';
+  const isFalhaContato = isError && row.tentativas >= row.maxTentativas;
   return (
     <div className="flex flex-col items-center gap-1">
       <Tag color={situacaoColorMap[row.situacao] || 'default'} className="!m-0">{row.situacao}</Tag>
@@ -173,11 +175,6 @@ const CampanhaDetalhe: React.FC = () => {
       ),
     },
     {
-      title: 'Classificação',
-      dataIndex: 'classificacao',
-      key: 'classificacao',
-    },
-    {
       title: 'Elegibilidade',
       key: 'elegibilidade',
       align: 'center',
@@ -193,48 +190,51 @@ const CampanhaDetalhe: React.FC = () => {
       title: 'Ação',
       key: 'acao',
       align: 'center',
-      width: 220,
+      width: 280,
       render: (_, record) => {
-        const canRetry = record.situacao === 'Erro' && record.tentativas < record.maxTentativas;
+        const isError = record.situacao === 'Erro' || record.situacao === 'Erro sem WhatsApp';
+        const canRetry = isError && record.tentativas < record.maxTentativas;
         const canInitiate = record.elegibilidade === 'apto' && record.situacao === 'Não enviado';
-        const isBlocked = record.elegibilidade === 'incompleto';
 
         return (
-          <div className="flex items-center justify-center gap-1.5">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => openPreview(record.key)}
-              className="h-8 px-2 gap-1 text-muted-foreground hover:text-foreground"
-            >
-              <Eye className="h-3.5 w-3.5" />
-              Visualizar
-            </Button>
-            {canInitiate && (
+          <div className="flex items-center justify-start gap-1.5">
+            {/* Slot 1: Visualizar — sempre presente, largura fixa */}
+            <div className="w-[110px] flex justify-end">
               <Button
-                variant="outline"
+                variant="ghost"
                 size="sm"
-                onClick={() => openIniciar(record.key)}
-                className="h-8 px-2 gap-1"
+                onClick={() => openPreview(record.key)}
+                className="h-8 px-2 gap-1 text-muted-foreground hover:text-foreground"
               >
-                <Play className="h-3.5 w-3.5" />
-                Iniciar disparo
+                <Eye className="h-3.5 w-3.5" />
+                Visualizar
               </Button>
-            )}
-            {canRetry && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handleRetry(record)}
-                className="h-8 px-2 gap-1 border-amber-300 text-amber-700 hover:bg-amber-50 dark:border-amber-800 dark:text-amber-400 dark:hover:bg-amber-950/40"
-              >
-                <RefreshCw className="h-3.5 w-3.5" />
-                Tentar novamente
-              </Button>
-            )}
-            {isBlocked && (
-              <span className="text-xs text-muted-foreground italic">—</span>
-            )}
+            </div>
+            {/* Slot 2: Iniciar / Tentar novamente — largura fixa, vazio quando não aplicável */}
+            <div className="w-[150px] flex justify-start">
+              {canInitiate && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => openIniciar(record.key)}
+                  className="h-8 px-2 gap-1"
+                >
+                  <Play className="h-3.5 w-3.5" />
+                  Iniciar disparo
+                </Button>
+              )}
+              {canRetry && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => openIniciar(record.key)}
+                  className="h-8 px-2 gap-1 border-amber-300 text-amber-700 hover:bg-amber-50 dark:border-amber-800 dark:text-amber-400 dark:hover:bg-amber-950/40"
+                >
+                  <RefreshCw className="h-3.5 w-3.5" />
+                  Tentar novamente
+                </Button>
+              )}
+            </div>
           </div>
         );
       },
