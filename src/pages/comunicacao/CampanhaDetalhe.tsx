@@ -187,36 +187,36 @@ const CampanhaDetalhe: React.FC = () => {
       title: 'Ação',
       key: 'acao',
       align: 'center',
-      width: 280,
+      width: 140,
       render: (_, record) => {
         const isError = record.situacao === 'Erro' || record.situacao === 'Erro sem WhatsApp';
         const canRetry = isError && record.tentativas < record.maxTentativas;
         const canInitiate = record.elegibilidade === 'apto' && record.situacao === 'Não enviado';
 
         return (
-          <div className="flex items-center justify-start gap-1.5">
-            {/* Slot 1: Visualizar — sempre presente, largura fixa */}
-            <div className="w-[110px] flex justify-end">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => openPreview(record.key)}
-                className="h-8 px-2 gap-1 text-muted-foreground hover:text-foreground"
-              >
-                <Eye className="h-3.5 w-3.5" />
-                Visualizar
-              </Button>
-            </div>
-            {/* Slot 2: Iniciar / Tentar novamente — apenas ícone, largura fixa */}
-            <div className="w-9 flex justify-center">
+          <div className="flex items-center justify-center gap-2">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => openPreview(record.key)}
+                  className="h-8 w-8"
+                >
+                  <Eye className="h-4 w-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Visualizar</TooltipContent>
+            </Tooltip>
+            <div className="w-8 flex justify-center">
               {canInitiate && (
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
-                      variant="ghost"
+                      variant="outline"
                       size="icon"
                       onClick={() => openIniciar(record.key)}
-                      className="h-8 w-8 text-muted-foreground hover:text-foreground"
+                      className="h-8 w-8"
                     >
                       <Play className="h-4 w-4" />
                     </Button>
@@ -228,10 +228,10 @@ const CampanhaDetalhe: React.FC = () => {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
-                      variant="ghost"
+                      variant="outline"
                       size="icon"
                       onClick={() => openIniciar(record.key)}
-                      className="h-8 w-8 text-amber-700 hover:text-amber-800 hover:bg-amber-50 dark:text-amber-400 dark:hover:bg-amber-950/40"
+                      className="h-8 w-8 border-amber-300 text-amber-700 hover:bg-amber-50 hover:text-amber-800 dark:border-amber-800 dark:text-amber-400 dark:hover:bg-amber-950/40"
                     >
                       <RefreshCw className="h-4 w-4" />
                     </Button>
