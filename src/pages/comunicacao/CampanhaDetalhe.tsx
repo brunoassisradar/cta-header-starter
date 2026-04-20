@@ -207,29 +207,37 @@ const CampanhaDetalhe: React.FC = () => {
                 Visualizar
               </Button>
             </div>
-            {/* Slot 2: Iniciar / Tentar novamente — largura fixa, vazio quando não aplicável */}
-            <div className="w-[150px] flex justify-start">
+            {/* Slot 2: Iniciar / Tentar novamente — apenas ícone, largura fixa */}
+            <div className="w-9 flex justify-center">
               {canInitiate && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => openIniciar(record.key)}
-                  className="h-8 px-2 gap-1"
-                >
-                  <Play className="h-3.5 w-3.5" />
-                  Iniciar disparo
-                </Button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => openIniciar(record.key)}
+                      className="h-8 w-8 text-muted-foreground hover:text-foreground"
+                    >
+                      <Play className="h-4 w-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Iniciar disparo</TooltipContent>
+                </Tooltip>
               )}
               {canRetry && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => openIniciar(record.key)}
-                  className="h-8 px-2 gap-1 border-amber-300 text-amber-700 hover:bg-amber-50 dark:border-amber-800 dark:text-amber-400 dark:hover:bg-amber-950/40"
-                >
-                  <RefreshCw className="h-3.5 w-3.5" />
-                  Tentar novamente
-                </Button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => openIniciar(record.key)}
+                      className="h-8 w-8 text-amber-700 hover:text-amber-800 hover:bg-amber-50 dark:text-amber-400 dark:hover:bg-amber-950/40"
+                    >
+                      <RefreshCw className="h-4 w-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Tentar novamente</TooltipContent>
+                </Tooltip>
               )}
             </div>
           </div>
