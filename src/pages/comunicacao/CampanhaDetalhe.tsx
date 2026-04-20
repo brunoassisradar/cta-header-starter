@@ -11,14 +11,13 @@ import { RefreshCw, Download, User, Send as SendIcon, Calendar, Eye, Play, Phone
 import WhatsAppPreviewModal from '@/components/comunicacao/WhatsAppPreviewModal';
 import { toast } from 'sonner';
 
-type Situacao = 'Entregue' | 'Erro' | 'Lida' | 'Respondida Completa' | 'Não enviado';
+type Situacao = 'Entregue' | 'Erro' | 'Erro sem WhatsApp' | 'Lida' | 'Respondida Completa' | 'Não enviado';
 type Elegibilidade = 'apto' | 'aguardando' | 'incompleto';
 
 interface DispatchData {
   key: string;
   nome: string;
   telefone: string;
-  classificacao: string;
   situacao: Situacao;
   elegibilidade: Elegibilidade;
   diasRestantes?: number; // for 'aguardando'
@@ -28,16 +27,16 @@ interface DispatchData {
 }
 
 const sampleDispatches: DispatchData[] = [
-  { key: '1', nome: 'Adriana Luiza Teixeira', telefone: '(47) 99222-3728', classificacao: 'Sem classificação', situacao: 'Entregue', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
-  { key: '2', nome: 'Adriano Lima', telefone: '(11) 99121-4313', classificacao: 'Sem WhatsApp', situacao: 'Erro', elegibilidade: 'apto', tentativas: 3, maxTentativas: 3 },
-  { key: '3', nome: 'Alair Moura', telefone: '(47) 93189-0033', classificacao: 'Sem WhatsApp', situacao: 'Erro', elegibilidade: 'apto', tentativas: 2, maxTentativas: 3 },
-  { key: '4', nome: 'Ana Carolina Silva', telefone: '(48) 99871-4574', classificacao: '-', situacao: 'Lida', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
-  { key: '5', nome: 'Alexandre Fernandes Biz Alves', telefone: '(11) 98876-5757', classificacao: '-', situacao: 'Entregue', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
-  { key: '6', nome: 'Amanda Lima Scaratt', telefone: '(43) 99979-1485', classificacao: '-', situacao: 'Não enviado', elegibilidade: 'apto', tentativas: 0, maxTentativas: 3 },
-  { key: '7', nome: 'André Torlucci', telefone: '(48) 99844-8797', classificacao: '-', situacao: 'Respondida Completa', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
-  { key: '8', nome: 'André Dias Simoni Nazário', telefone: '(48) 99896-1232', classificacao: '-', situacao: 'Não enviado', elegibilidade: 'aguardando', diasRestantes: 12, tentativas: 0, maxTentativas: 3 },
-  { key: '9', nome: 'Bruna Machado', telefone: '(21) 99503-9442', classificacao: '-', situacao: 'Não enviado', elegibilidade: 'aguardando', diasRestantes: 27, tentativas: 0, maxTentativas: 3 },
-  { key: '10', nome: 'Bruno Santos', telefone: '(47) 99957-8257', classificacao: '-', situacao: 'Não enviado', elegibilidade: 'incompleto', etapaPendente: 'TAlta', tentativas: 0, maxTentativas: 3 },
+  { key: '1', nome: 'Adriana Luiza Teixeira', telefone: '(47) 99222-3728', situacao: 'Entregue', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
+  { key: '2', nome: 'Adriano Lima', telefone: '(11) 99121-4313', situacao: 'Erro sem WhatsApp', elegibilidade: 'apto', tentativas: 3, maxTentativas: 3 },
+  { key: '3', nome: 'Alair Moura', telefone: '(47) 93189-0033', situacao: 'Erro', elegibilidade: 'apto', tentativas: 2, maxTentativas: 3 },
+  { key: '4', nome: 'Ana Carolina Silva', telefone: '(48) 99871-4574', situacao: 'Lida', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
+  { key: '5', nome: 'Alexandre Fernandes Biz Alves', telefone: '(11) 98876-5757', situacao: 'Entregue', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
+  { key: '6', nome: 'Amanda Lima Scaratt', telefone: '(43) 99979-1485', situacao: 'Não enviado', elegibilidade: 'apto', tentativas: 0, maxTentativas: 3 },
+  { key: '7', nome: 'André Torlucci', telefone: '(48) 99844-8797', situacao: 'Respondida Completa', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
+  { key: '8', nome: 'André Dias Simoni Nazário', telefone: '(48) 99896-1232', situacao: 'Não enviado', elegibilidade: 'aguardando', diasRestantes: 12, tentativas: 0, maxTentativas: 3 },
+  { key: '9', nome: 'Bruna Machado', telefone: '(21) 99503-9442', situacao: 'Não enviado', elegibilidade: 'aguardando', diasRestantes: 27, tentativas: 0, maxTentativas: 3 },
+  { key: '10', nome: 'Bruno Santos', telefone: '(47) 99957-8257', situacao: 'Não enviado', elegibilidade: 'incompleto', etapaPendente: 'TAlta', tentativas: 0, maxTentativas: 3 },
 ];
 
 const campaignData = {
