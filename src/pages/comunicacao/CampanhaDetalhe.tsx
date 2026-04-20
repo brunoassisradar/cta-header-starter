@@ -11,14 +11,13 @@ import { RefreshCw, Download, User, Send as SendIcon, Calendar, Eye, Play, Phone
 import WhatsAppPreviewModal from '@/components/comunicacao/WhatsAppPreviewModal';
 import { toast } from 'sonner';
 
-type Situacao = 'Entregue' | 'Erro' | 'Lida' | 'Respondida Completa' | 'Não enviado';
+type Situacao = 'Entregue' | 'Erro' | 'Erro sem WhatsApp' | 'Lida' | 'Respondida Completa' | 'Não enviado';
 type Elegibilidade = 'apto' | 'aguardando' | 'incompleto';
 
 interface DispatchData {
   key: string;
   nome: string;
   telefone: string;
-  classificacao: string;
   situacao: Situacao;
   elegibilidade: Elegibilidade;
   diasRestantes?: number; // for 'aguardando'
@@ -28,16 +27,16 @@ interface DispatchData {
 }
 
 const sampleDispatches: DispatchData[] = [
-  { key: '1', nome: 'Adriana Luiza Teixeira', telefone: '(47) 99222-3728', classificacao: 'Sem classificação', situacao: 'Entregue', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
-  { key: '2', nome: 'Adriano Lima', telefone: '(11) 99121-4313', classificacao: 'Sem WhatsApp', situacao: 'Erro', elegibilidade: 'apto', tentativas: 3, maxTentativas: 3 },
-  { key: '3', nome: 'Alair Moura', telefone: '(47) 93189-0033', classificacao: 'Sem WhatsApp', situacao: 'Erro', elegibilidade: 'apto', tentativas: 2, maxTentativas: 3 },
-  { key: '4', nome: 'Ana Carolina Silva', telefone: '(48) 99871-4574', classificacao: '-', situacao: 'Lida', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
-  { key: '5', nome: 'Alexandre Fernandes Biz Alves', telefone: '(11) 98876-5757', classificacao: '-', situacao: 'Entregue', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
-  { key: '6', nome: 'Amanda Lima Scaratt', telefone: '(43) 99979-1485', classificacao: '-', situacao: 'Não enviado', elegibilidade: 'apto', tentativas: 0, maxTentativas: 3 },
-  { key: '7', nome: 'André Torlucci', telefone: '(48) 99844-8797', classificacao: '-', situacao: 'Respondida Completa', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
-  { key: '8', nome: 'André Dias Simoni Nazário', telefone: '(48) 99896-1232', classificacao: '-', situacao: 'Não enviado', elegibilidade: 'aguardando', diasRestantes: 12, tentativas: 0, maxTentativas: 3 },
-  { key: '9', nome: 'Bruna Machado', telefone: '(21) 99503-9442', classificacao: '-', situacao: 'Não enviado', elegibilidade: 'aguardando', diasRestantes: 27, tentativas: 0, maxTentativas: 3 },
-  { key: '10', nome: 'Bruno Santos', telefone: '(47) 99957-8257', classificacao: '-', situacao: 'Não enviado', elegibilidade: 'incompleto', etapaPendente: 'TAlta', tentativas: 0, maxTentativas: 3 },
+  { key: '1', nome: 'Adriana Luiza Teixeira', telefone: '(47) 99222-3728', situacao: 'Entregue', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
+  { key: '2', nome: 'Adriano Lima', telefone: '(11) 99121-4313', situacao: 'Erro sem WhatsApp', elegibilidade: 'apto', tentativas: 3, maxTentativas: 3 },
+  { key: '3', nome: 'Alair Moura', telefone: '(47) 93189-0033', situacao: 'Erro', elegibilidade: 'apto', tentativas: 2, maxTentativas: 3 },
+  { key: '4', nome: 'Ana Carolina Silva', telefone: '(48) 99871-4574', situacao: 'Lida', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
+  { key: '5', nome: 'Alexandre Fernandes Biz Alves', telefone: '(11) 98876-5757', situacao: 'Entregue', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
+  { key: '6', nome: 'Amanda Lima Scaratt', telefone: '(43) 99979-1485', situacao: 'Não enviado', elegibilidade: 'apto', tentativas: 0, maxTentativas: 3 },
+  { key: '7', nome: 'André Torlucci', telefone: '(48) 99844-8797', situacao: 'Respondida Completa', elegibilidade: 'apto', tentativas: 1, maxTentativas: 3 },
+  { key: '8', nome: 'André Dias Simoni Nazário', telefone: '(48) 99896-1232', situacao: 'Não enviado', elegibilidade: 'aguardando', diasRestantes: 12, tentativas: 0, maxTentativas: 3 },
+  { key: '9', nome: 'Bruna Machado', telefone: '(21) 99503-9442', situacao: 'Não enviado', elegibilidade: 'aguardando', diasRestantes: 27, tentativas: 0, maxTentativas: 3 },
+  { key: '10', nome: 'Bruno Santos', telefone: '(47) 99957-8257', situacao: 'Não enviado', elegibilidade: 'incompleto', etapaPendente: 'TAlta', tentativas: 0, maxTentativas: 3 },
 ];
 
 const campaignData = {
@@ -57,6 +56,7 @@ const campaignData = {
 const situacaoColorMap: Record<string, string> = {
   Entregue: 'blue',
   Erro: 'red',
+  'Erro sem WhatsApp': 'red',
   Lida: 'cyan',
   'Respondida Completa': 'purple',
   'Não enviado': 'default',
@@ -102,7 +102,8 @@ const ElegibilidadeBadge: React.FC<{ row: DispatchData }> = ({ row }) => {
 };
 
 const SituacaoCell: React.FC<{ row: DispatchData }> = ({ row }) => {
-  const isFalhaContato = row.situacao === 'Erro' && row.tentativas >= row.maxTentativas;
+  const isError = row.situacao === 'Erro' || row.situacao === 'Erro sem WhatsApp';
+  const isFalhaContato = isError && row.tentativas >= row.maxTentativas;
   return (
     <div className="flex flex-col items-center gap-1">
       <Tag color={situacaoColorMap[row.situacao] || 'default'} className="!m-0">{row.situacao}</Tag>
@@ -155,9 +156,6 @@ const CampanhaDetalhe: React.FC = () => {
     toast.success(`Disparo iniciado para ${activeRow?.nome}`);
     closeModal();
   };
-  const handleRetry = (row: DispatchData) => {
-    toast.success(`Nova tentativa de disparo enviada para ${row.nome}`);
-  };
 
   const { funil } = campaignData;
   const maxFunil = funil.total;
@@ -172,11 +170,6 @@ const CampanhaDetalhe: React.FC = () => {
           <div className="text-xs text-muted-foreground">{record.telefone}</div>
         </div>
       ),
-    },
-    {
-      title: 'Classificação',
-      dataIndex: 'classificacao',
-      key: 'classificacao',
     },
     {
       title: 'Elegibilidade',
@@ -194,48 +187,51 @@ const CampanhaDetalhe: React.FC = () => {
       title: 'Ação',
       key: 'acao',
       align: 'center',
-      width: 220,
+      width: 280,
       render: (_, record) => {
-        const canRetry = record.situacao === 'Erro' && record.tentativas < record.maxTentativas;
+        const isError = record.situacao === 'Erro' || record.situacao === 'Erro sem WhatsApp';
+        const canRetry = isError && record.tentativas < record.maxTentativas;
         const canInitiate = record.elegibilidade === 'apto' && record.situacao === 'Não enviado';
-        const isBlocked = record.elegibilidade === 'incompleto';
 
         return (
-          <div className="flex items-center justify-center gap-1.5">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => openPreview(record.key)}
-              className="h-8 px-2 gap-1 text-muted-foreground hover:text-foreground"
-            >
-              <Eye className="h-3.5 w-3.5" />
-              Visualizar
-            </Button>
-            {canInitiate && (
+          <div className="flex items-center justify-start gap-1.5">
+            {/* Slot 1: Visualizar — sempre presente, largura fixa */}
+            <div className="w-[110px] flex justify-end">
               <Button
-                variant="outline"
+                variant="ghost"
                 size="sm"
-                onClick={() => openIniciar(record.key)}
-                className="h-8 px-2 gap-1"
+                onClick={() => openPreview(record.key)}
+                className="h-8 px-2 gap-1 text-muted-foreground hover:text-foreground"
               >
-                <Play className="h-3.5 w-3.5" />
-                Iniciar disparo
+                <Eye className="h-3.5 w-3.5" />
+                Visualizar
               </Button>
-            )}
-            {canRetry && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handleRetry(record)}
-                className="h-8 px-2 gap-1 border-amber-300 text-amber-700 hover:bg-amber-50 dark:border-amber-800 dark:text-amber-400 dark:hover:bg-amber-950/40"
-              >
-                <RefreshCw className="h-3.5 w-3.5" />
-                Tentar novamente
-              </Button>
-            )}
-            {isBlocked && (
-              <span className="text-xs text-muted-foreground italic">—</span>
-            )}
+            </div>
+            {/* Slot 2: Iniciar / Tentar novamente — largura fixa, vazio quando não aplicável */}
+            <div className="w-[150px] flex justify-start">
+              {canInitiate && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => openIniciar(record.key)}
+                  className="h-8 px-2 gap-1"
+                >
+                  <Play className="h-3.5 w-3.5" />
+                  Iniciar disparo
+                </Button>
+              )}
+              {canRetry && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => openIniciar(record.key)}
+                  className="h-8 px-2 gap-1 border-amber-300 text-amber-700 hover:bg-amber-50 dark:border-amber-800 dark:text-amber-400 dark:hover:bg-amber-950/40"
+                >
+                  <RefreshCw className="h-3.5 w-3.5" />
+                  Tentar novamente
+                </Button>
+              )}
+            </div>
           </div>
         );
       },
@@ -387,15 +383,6 @@ const CampanhaDetalhe: React.FC = () => {
                 { label: 'Lida', value: 'Lida' },
                 { label: 'Respondida Completa', value: 'Respondida Completa' },
                 { label: 'Não enviado', value: 'Não enviado' },
-              ]}
-            />
-            <Select
-              placeholder="Todas as classificações"
-              style={{ width: 200 }}
-              allowClear
-              options={[
-                { label: 'Sem classificação', value: 'Sem classificação' },
-                { label: 'Sem WhatsApp', value: 'Sem WhatsApp' },
               ]}
             />
           </div>
